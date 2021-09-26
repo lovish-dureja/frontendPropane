@@ -1,0 +1,77 @@
+<!-- start::contact-form -->
+<div style="margin-top:50px;">
+
+    <section id="contacts-wrap" class="contact-form-wrap light-gray p-t-b-80">
+        <div class="container">
+
+
+            <div class="section-header mb-4 mt-5 text-center">
+                <h2 style="font-weight: 600; font-size: 50px;color: #f03250;">Login</h2>
+            </div>
+            <div data-aos="fade-right" class="form-wrap text-center col-md-6 mb-4"
+                style="margin-left: auto;margin-right: auto; box-shadow: 0 0 0 0.2rem rgba(245, 88, 119, 0.25);">
+
+               
+
+
+                <form class="signin_form" [formGroup]="loginForm" (ngSubmit)="handleForm(loginForm)" autocomplete="false" novalidate
+                #formDir="ngForm">
+          
+                <div class="row align-items-center">
+          
+                  <div class="col-md-6">
+                    <h3 class="mb-3">Login to get started!</h3>
+          
+                    <div class="field_wrapper">
+                      <mat-form-field class="input_bordered no_placeholder" floatLabel="never">
+                        <input type="name" matInput placeholder="Enter your name" formControlName="name"
+                          [(ngModel)]="login.name" maxlength="40" />
+                      </mat-form-field>
+                      <mat-error
+                        *ngIf="loginForm.controls.name.invalid && (loginForm.controls.name.dirty || loginForm.controls.name.touched) && formDir.submitted">
+                        <span *ngIf="loginForm.controls.name.errors.required || loginForm.controls.name.errors.name">Please
+                          enter a valid name.</span>
+                        <span *ngIf="loginForm.controls.name.errors.maxlength">name should not be greater than 40
+                          characters.</span>
+                        <span *ngIf="formError.name">{{formError.name}}</span>
+                      </mat-error>
+                    </div>
+          
+                    <div class="field_wrapper">
+                      <mat-form-field class="input_bordered no_placeholder" floatLabel="never">
+                        <input type="pincode" matInput placeholder="Enter Your pincode" formControlName="pincode"
+                          [(ngModel)]="login.pincode" minlength="4" maxlength="40" />
+                      </mat-form-field>
+                      <mat-error
+                        *ngIf="loginForm.controls.pincode.invalid && (loginForm.controls.pincode.dirty || loginForm.controls.pincode.touched) && formDir.submitted">
+                        <span *ngIf="loginForm.controls.pincode.errors.required">
+                          Please enter pincode.
+                        </span>
+                        <span *ngIf="loginForm.controls.pincode.errors.maxlength">
+                          pincode should not be greater than 40 characters.
+                        </span>
+                        <span *ngIf="loginForm.controls.pincode.errors.minlength">
+                          pincode should not be less than 4 characters.
+                        </span>
+                        <span *ngIf="formError.pincode">{{formError.pincode}}</span>
+                      </mat-error>
+                    </div>
+          
+                    <div class="button-control">
+                      <button class="btn btn-red btn-lg btn-block" type="submit" *ngIf="!loadingLogin"
+                        [ngClass]="(!this.loginForm.valid)?'red':'cyan'" mat-button>Log in</button>
+                      <button class="btn btn-red btn-lg btn-block" disabled mat-button *ngIf="loadingLogin"><i
+                          class="fa fa-spinner fa-spin"></i> &nbsp;Loading</button>
+                    </div>
+                  </div>
+          
+                </div>
+          
+              </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- end::contact-form -->
+</div>
